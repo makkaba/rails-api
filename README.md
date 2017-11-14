@@ -12,10 +12,10 @@ dotenv: for sensitive config
 
 # rbenv VS rvm
 
-(rbenv를 선호하는 이유 및 설치 방법)[https://rorlab.gitbooks.io/railsguidebook/content/contents/rbenv.html]
+[rbenv를 선호하는 이유 및 설치 방법](https://rorlab.gitbooks.io/railsguidebook/content/contents/rbenv.html)
 
 # install
-I followed (this)[https://gorails.com/setup/osx/10.12-sierra]
+I followed [this](https://gorails.com/setup/osx/10.12-sierra)
 
 # fix
 xcode-install 뭐시기
