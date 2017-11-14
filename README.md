@@ -1,35 +1,21 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+2.4.1
 
 * System dependencies
+rails 5.1.4
 
 * Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+rbenv: for ruby version
+dotenv: for sensitive config
 
 * Deployment instructions
 
-* ...
-
-
 # rbenv VS rvm
 
-링크 루비북
+(rbenv를 선호하는 이유 및 설치 방법)[https://rorlab.gitbooks.io/railsguidebook/content/contents/rbenv.html]
 
-# installation
-i followed (this)[https://gorails.com/setup/osx/10.12-sierra]
+# install
+I followed (this)[https://gorails.com/setup/osx/10.12-sierra]
 
 # fix
 xcode-install 뭐시기
@@ -38,4 +24,3 @@ gem install bundler 도해줘야 함
 
 # test
 https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
-
