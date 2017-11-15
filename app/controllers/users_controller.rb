@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    # @users = User.all
+    token = params[:token]
+    if token.nil?
+        @user = nil
+        return
+    end
+    render json: {status: 'SUCCESS', message: token }, status: :ok
+    
   end
 
   # GET /users/1
