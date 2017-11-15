@@ -1,5 +1,10 @@
+require "jwt"
+require 'rest-client'
+
 class UsersController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
+    
+
 
   # GET /users
   # GET /users.json
@@ -10,7 +15,8 @@ class UsersController < ApplicationController
         @user = nil
         return
     end
-    render json: {status: 'SUCCESS', message: token }, status: :ok
+    firebase_id = verify_user(token)[0]["user_id"]
+    render json: {status: 'SUCCESS', message: firebase_id }, status: :ok
     
   end
 
@@ -77,5 +83,31 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :uid, :display_name, :provider, :photo_url)
+    end
+    
+    def verify_user(token)
+      certificate_url = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"
+      myresponse = RestClient.get(certificate_url).body
+      certificates  = JSON.parse myresponse.gsub('=>', ':')
+      myjson =""
+      certificates.each do|key , value|
+        begin
+          x509 = OpenSSL::X509::Certificate.new(value)
+          iss = 'https://securetoken.google.com/channel-8e58c'
+          aud = 'channel-8e58c' # change this 
+          myjson = JWT.decode(token, x509.public_key, true, 
+          {               algorithm: "RS256", verify_iat: true ,
+                          iss: iss , verify_iss: true ,
+                          aud: aud , verify_aud: true
+          })
+
+          return myjson
+
+        rescue
+        end
+      end
+
+      return nil     
+
     end
 end
